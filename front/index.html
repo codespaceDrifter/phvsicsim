@@ -5,37 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Physics Simulation</title>
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        canvas {
-            display: block;
-        }
-        #info {
-            position: absolute;
+        body { margin: 0; }
+        canvas { display: block; }
+        #elapsed-time {
+            position: fixed;
             top: 10px;
             left: 10px;
             color: white;
             font-family: Arial, sans-serif;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <div id="info">Physics Simulation - Elapsed Time: <span id="elapsed-time">0.00</span>s</div>
-    
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.159.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.159.0/examples/jsm/"
-            }
-        }
-    </script>
-    
-    <script type="module" src="main.js"></script>
+    <div id="elapsed-time">Time: 0.00s</div>
+    <script type="module" src="/main.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // Scene setup
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x1a1a2e);
+scene.background = new THREE.Color(0x000000);
 
 // Camera setup
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -21,8 +21,22 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
+// Configure mouse buttons:
+// LEFT click = rotate
+// RIGHT click = pan (move)
+// MIDDLE click = zoom
+controls.mouseButtons = {
+    LEFT: THREE.MOUSE.ROTATE,
+    MIDDLE: THREE.MOUSE.DOLLY,
+    RIGHT: THREE.MOUSE.PAN
+};
+
+// Make sure panning is enabled and set some reasonable limits
+controls.enablePan = true;
+controls.panSpeed = 1.0;  // Adjust this value to make panning faster/slower
+
 // Lights
-const ambientLight = new THREE.AmbientLight(0x404040);
+const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -30,11 +44,11 @@ directionalLight.position.set(1, 1, 1);
 scene.add(directionalLight);
 
 // Grid helper
-const gridHelper = new THREE.GridHelper(20, 20);
+const gridHelper = new THREE.GridHelper(100, 100);
 scene.add(gridHelper);
 
-// Axes helper
-const axesHelper = new THREE.AxesHelper(5);
+// Axes helper - made much longer
+const axesHelper = new THREE.AxesHelper(1000); // Much longer axes
 scene.add(axesHelper);
 
 // Object storage
@@ -66,6 +80,7 @@ async function fetchSimulationData() {
 // Update simulation objects based on data
 function updateSimulation(data) {
   // Handle existing objects
+  //Object.entries turns key value pairs into an arrays of size 2
   for (const [id, objData] of Object.entries(data.objects)) {
     if (!objects.has(id)) {
       // Create new object if it doesn't exist
