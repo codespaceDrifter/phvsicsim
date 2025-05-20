@@ -1,6 +1,5 @@
 package common
 
-
 type Vector3 struct {
 	X float32
 	Y float32
@@ -39,6 +38,8 @@ type Object struct {
 	Mesh     Mesh
 	Position Vector3
 
+	Color string
+
 	Velocity Vector3
 
 	Density  float32
@@ -48,9 +49,9 @@ type Object struct {
 	CenterOfMass Vector3
 }
 
-func (o *Object) Flatten() (string, []float32, []float32, []uint32) {
+func (o *Object) Flatten() (string, []float32, []float32, []uint32, string) {
 	v, i := o.Mesh.Flatten()
-	return o.ID, []float32{o.Position.X, o.Position.Y, o.Position.Z}, v, i
+	return o.ID, []float32{o.Position.X, o.Position.Y, o.Position.Z}, v, i, o.Color
 
 }
 
@@ -59,6 +60,7 @@ func (o Object) DeepCopy() Object {
 	newObj := Object{
 		ID:           o.ID,
 		Position:     Vector3{X: o.Position.X, Y: o.Position.Y, Z: o.Position.Z},
+		Color:        o.Color,
 		Velocity:     Vector3{X: o.Velocity.X, Y: o.Velocity.Y, Z: o.Velocity.Z},
 		Density:      o.Density,
 		Mass:         o.Mass,
@@ -76,7 +78,6 @@ func (o Object) DeepCopy() Object {
 
 	return newObj
 }
-
 
 func (o *Object) UpdatePosition(dt float32) {
 	o.Position.X += o.Velocity.X * dt

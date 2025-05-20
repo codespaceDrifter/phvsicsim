@@ -9,11 +9,12 @@ import (
 )
 
 type WorldResponse struct {
+	CurTime        float32     `json:"CurTime"`
 	IDArray        []string    `json:"IDArray"`
 	PositionArrays [][]float32 `json:"PositionArrays"`
 	VertexArrays   [][]float32 `json:"VertexArrays"`
 	IndexArrays    [][]uint32  `json:"IndexArrays"`
-	CurTime        float32     `json:"CurTime"`
+	ColorArray     []string    `json:"ColorArray"`
 }
 
 func GetWorldObjectsHandler(w http.ResponseWriter, r *http.Request, worlds map[string]*common.World) {
@@ -21,14 +22,15 @@ func GetWorldObjectsHandler(w http.ResponseWriter, r *http.Request, worlds map[s
 
 	world := worlds[id]
 
-	IDArray, PositionArrays, VertexArrays, IndexArrays, CurTime := world.Flatten()
+	CurTime, IDArray, PositionArrays, VertexArrays, IndexArrays, ColorArray := world.Flatten()
 
 	response := WorldResponse{
+		CurTime:        CurTime,
 		IDArray:        IDArray,
 		PositionArrays: PositionArrays,
 		VertexArrays:   VertexArrays,
 		IndexArrays:    IndexArrays,
-		CurTime:        CurTime,
+		ColorArray:     ColorArray,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
