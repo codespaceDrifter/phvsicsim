@@ -8,7 +8,7 @@ func ThreeBody() common.World {
 		TimeStep:  0.01,
 		SleepTime: 0.01,
 	}
-
+/*
 	earthMesh := common.NewSphere(1, 3)
 	earth := common.Object{
 		ID:       "earth",
@@ -36,6 +36,18 @@ func ThreeBody() common.World {
 	world.Objects = append(world.Objects, earth)
 	world.Objects = append(world.Objects, sun)
 	world.Objects = append(world.Objects, jupiter)
+
+*/
+
+	earthMesh := common.NewSphere(6_000_000, 5)
+	earth := common.Object{
+		ID:       "earth",
+		Mesh:     earthMesh,
+		Position: common.Vector3{X: 0, Y: -6_000_000, Z: 0},
+		Velocity: common.Vector3{X: 0, Y: 0, Z: 0},
+	}
+
+	world.Objects = append(world.Objects, earth)
 
 	// Save the initial state after adding all objects
 	world.SaveInitialState()
