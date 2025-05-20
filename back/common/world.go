@@ -34,11 +34,11 @@ func (w *World) Update() {
 	w.CurTime += w.TimeStep
 	for i := range w.Objects {
 		w.Objects[i].UpdatePosition(w.TimeStep)
-		if w.SleepTime > 0 {
-			// Convert to float64 and multiply by seconds (1 billion nanoseconds) first, then convert to Duration(alias for int64)
-			sleepDuration := time.Duration(float64(w.SleepTime) * float64(time.Second))
-			time.Sleep(sleepDuration)
-		}
+	}
+	if w.SleepTime > 0 {
+		// Convert to float64 and multiply by seconds (1 billion nanoseconds) first, then convert to Duration(alias for int64)
+		sleepDuration := time.Duration(float64(w.SleepTime) * float64(time.Second))
+		time.Sleep(sleepDuration)
 	}
 }
 
