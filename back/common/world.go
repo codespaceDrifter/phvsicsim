@@ -13,21 +13,23 @@ type World struct {
 	InitialObjects []Object
 }
 
-func (w *World) Flatten() ([]string, [][]float32, [][]float32, [][]uint32, float32) {
+func (w *World) Flatten() (float32, []string, [][]float32, [][]float32, [][]uint32, []string) {
 	IDArray := make([]string, 0, len(w.Objects))
 	PositionArrays := make([][]float32, 0, len(w.Objects))
 	VertexArrays := make([][]float32, 0, len(w.Objects))
 	IndexArrays := make([][]uint32, 0, len(w.Objects))
+	ColorArray := make([]string, 0, len(w.Objects))
 
 	for _, obj := range w.Objects {
-		id, pos, verts, inds := obj.Flatten()
+		id, pos, verts, inds, color := obj.Flatten()
 		IDArray = append(IDArray, id)
 		PositionArrays = append(PositionArrays, pos)
 		VertexArrays = append(VertexArrays, verts)
 		IndexArrays = append(IndexArrays, inds)
+		ColorArray = append(ColorArray, color)
 	}
 
-	return IDArray, PositionArrays, VertexArrays, IndexArrays, w.CurTime
+	return w.CurTime, IDArray, PositionArrays, VertexArrays, IndexArrays, ColorArray
 }
 
 func (w *World) Update() {
