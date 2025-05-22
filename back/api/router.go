@@ -2,13 +2,13 @@ package api
 
 import (
 	"net/http"
-	"root/common"
+	"root/world"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
 )
 
-func NewRouter(worlds map[string]*common.World) http.Handler {
+func NewRouter(worlds map[string]*world.World) http.Handler {
 	r := chi.NewRouter()
 
 	// CORS middleware

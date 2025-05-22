@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"net/http"
 	"root/api"
-	"root/common"
-	"root/example"
+	"root/world"
+	"root/example/worlds"
 )
 
 func main() {
-	worlds := map[string]*common.World{}
+	worlds := map[string]*world.World{}
 
-	world := example.ThreeBody()
+	world := exampleWorlds.ThreeBody()
 
-	worlds[world.ID] = &world
+	worlds[world.ID] = world
 
 	router := api.NewRouter(worlds)
 
@@ -27,7 +27,6 @@ func main() {
 
 	// Continuous simulation
 	for {
-		fmt.Println("Updating world")
 		world.Update()
 	}
 }

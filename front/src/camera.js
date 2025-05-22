@@ -16,7 +16,7 @@ export function createScene() {
 
   // Grid helper
   const gridHelper = new THREE.GridHelper(100, 100);
-  scene.add(gridHelper);
+  //scene.add(gridHelper);
 
   // Axes helper - made much longer
   const axesHelper = new THREE.AxesHelper(1000);
@@ -27,8 +27,8 @@ export function createScene() {
 
 // Initialize camera
 export function createCamera() {
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1_000_000);
-  camera.position.set(10, 10, 15);
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1_000_000);
+  camera.position.set(100, 100, 100);
   camera.lookAt(0, 0, 0);
   return camera;
 }

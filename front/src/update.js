@@ -94,6 +94,7 @@ export function createObject(id, objData, scene) {
   // Add wireframe to mesh
   threeMesh.add(wireframe);
 
+
   // Add to scene
   scene.add(threeMesh);
 

@@ -5,7 +5,7 @@ import (
 )
 
 // Create a rectangular prism (box) mesh
-func NewBox(width, height, depth float32) Mesh {
+func NewBox(width, height, depth float32) *Mesh {
 	// Define the 8 vertices of the box
 	vertices := []Vector3{
 		{X: -width / 2, Y: -height / 2, Z: -depth / 2}, // 0
@@ -40,14 +40,12 @@ func NewBox(width, height, depth float32) Mesh {
 		{2, 7, 3},
 	}
 
-	return Mesh{
-		Vertices: vertices,
-		Indices:  indices,
-	}
+	mesh := NewMesh(vertices, indices)
+	return mesh
 }
 
 // Create a sphere mesh (approximated with triangles)
-func NewSphere(radius float32, subdivisions int) Mesh {
+func NewSphere(radius float32, subdivisions int) *Mesh {
 	if subdivisions < 0 {
 		subdivisions = 0
 	}
@@ -140,8 +138,6 @@ func NewSphere(radius float32, subdivisions int) Mesh {
 		vertices[i].Z = vertices[i].Z / length * radius
 	}
 
-	return Mesh{
-		Vertices: vertices,
-		Indices:  faces, // faces is already [][3]int
-	}
+	mesh := NewMesh(vertices, faces)
+	return mesh
 }

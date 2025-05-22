@@ -3,7 +3,7 @@ package api
 import (
 	"encoding/json"
 	"net/http"
-	"root/common"
+	"root/world"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -17,7 +17,7 @@ type WorldResponse struct {
 	ColorArray     []string    `json:"ColorArray"`
 }
 
-func GetWorldObjectsHandler(w http.ResponseWriter, r *http.Request, worlds map[string]*common.World) {
+func GetWorldObjectsHandler(w http.ResponseWriter, r *http.Request, worlds map[string]*world.World) {
 	id := chi.URLParam(r, "id")
 
 	world := worlds[id]
@@ -37,7 +37,7 @@ func GetWorldObjectsHandler(w http.ResponseWriter, r *http.Request, worlds map[s
 	json.NewEncoder(w).Encode(response)
 }
 
-func ResetWorldHandler(w http.ResponseWriter, r *http.Request, worlds map[string]*common.World) {
+func ResetWorldHandler(w http.ResponseWriter, r *http.Request, worlds map[string]*world.World) {
 	id := chi.URLParam(r, "id")
 	world := worlds[id]
 	world.Reset()
