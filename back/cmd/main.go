@@ -11,7 +11,7 @@ import (
 func main() {
 	worlds := map[string]*world.World{}
 
-	world := exampleWorlds.ThreeBody()
+	world := exampleWorlds.RocketLaunch()
 
 	worlds[world.ID] = world
 

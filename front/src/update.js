@@ -8,9 +8,9 @@ export const FETCH_INTERVAL = 1000 / FRAMERATE; // Convert to milliseconds
 export const objects = new Map();
 
 // Fetch simulation data from server
-export async function fetchSimulationData(scene) {
+export async function fetchSimulationData(scene, curWorld) {
   try {
-    const response = await fetch("http://localhost:8080/worlds/threeBody");
+    const response = await fetch(`http://localhost:8080/worlds/${curWorld}`);
     const data = await response.json();
     updateSimulation(data, scene);
   } catch (error) {
@@ -115,9 +115,9 @@ export function updateObject(id, objData) {
 }
 
 // Reset world function
-export async function resetSimulation() {
+export async function resetSimulation(curWorld) {
   try {
-    await fetch("http://localhost:8080/worlds/threeBody/reset", {
+    await fetch(`http://localhost:8080/worlds/${curWorld}/reset`, {
       method: "POST",
     });
   } catch (error) {
@@ -126,11 +126,11 @@ export async function resetSimulation() {
 }
 
 // Setup keyboard event listeners
-export function setupKeyControls() {
+export function setupKeyControls(curWorld) {
   window.addEventListener("keydown", (event) => {
     if (event.key.toLowerCase() === "r") {
       console.log("Resetting simulation...");
-      resetSimulation();
+      resetSimulation(curWorld);
     }
   });
 }

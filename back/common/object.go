@@ -18,6 +18,8 @@ type Object struct {
 	Friction float32
 
 	CenterOfMass Vector3
+
+	MagicForce Vector3
 }
 
 func NewObject(id string, color string, mesh *Mesh,density float32, position Vector3, velocity Vector3) *Object {
@@ -47,6 +49,7 @@ func (o *Object) DeepCopy() *Object {
 		Mass:         o.Mass,
 		Friction:     o.Friction,
 		CenterOfMass: o.CenterOfMass,
+		MagicForce:   o.MagicForce,
 	}
 
 	// Deep copy Mesh pointer
@@ -71,6 +74,7 @@ func (o *Object) Update(dt float32) {
 
 	// change force here
 	o.Force = ClampSmall(o.Force)
+	o.Force = VecAddVec(o.Force, o.MagicForce)
 	o.Acceleration = VecDivScalar(o.Force, o.Mass)
 	o.Velocity = VecAddVec(o.Velocity, VecMulScalar(o.Acceleration, dt))
 	o.Position = VecAddVec(o.Position, VecMulScalar(o.Velocity, dt))
@@ -136,7 +140,7 @@ func (a *Object) TriangleOverlap(b *Object) bool {
 func (o *Object) StepBack(dt float32) {
 	negVelocity := NegVec(o.Velocity)
 
-	scaledVelocity := VecMulScalar(negVelocity, 10)
+	scaledVelocity := VecMulScalar(negVelocity, 1.1)
 
 	o.Position = VecAddVec(o.Position, VecMulScalar(scaledVelocity, dt))
 }

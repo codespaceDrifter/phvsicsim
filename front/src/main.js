@@ -12,6 +12,8 @@ import {
   setupKeyControls
 } from './update.js';
 
+let curWorld = "rocketLaunch";
+
 // Initialize core components
 const scene = createScene();
 const camera = createCamera();
@@ -22,7 +24,7 @@ const controls = createControls(camera, renderer);
 setupResizeHandler(camera, renderer);
 
 // Setup keyboard controls
-setupKeyControls();
+setupKeyControls(curWorld);
 
 // Animation loop
 function animate() {
@@ -39,4 +41,4 @@ function animate() {
 animate();
 
 // Fetch simulation data regularly
-setInterval(() => fetchSimulationData(scene), FETCH_INTERVAL);
+setInterval(() => fetchSimulationData(scene, curWorld), FETCH_INTERVAL);

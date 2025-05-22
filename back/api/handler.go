@@ -40,7 +40,7 @@ func GetWorldObjectsHandler(w http.ResponseWriter, r *http.Request, worlds map[s
 func ResetWorldHandler(w http.ResponseWriter, r *http.Request, worlds map[string]*world.World) {
 	id := chi.URLParam(r, "id")
 	world := worlds[id]
-	world.Reset()
+	world.SetToReset()
 	// No need to update the map since we're using pointers
 
 }

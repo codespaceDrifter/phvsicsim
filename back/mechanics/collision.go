@@ -1,12 +1,10 @@
 package mechanics
 
 import (
-	"fmt"
 	"root/common"
 )
 
 func ElasticCollisionResponse(a *common.Object, b *common.Object) {
-	fmt.Println("Collision response")
 
 	m1 := a.Mass
 	m2 := b.Mass
@@ -15,7 +13,6 @@ func ElasticCollisionResponse(a *common.Object, b *common.Object) {
 	v1 := a.Velocity
 	v2 := b.Velocity
 
-	fmt.Println(v1, v2)
 
 	// v1f = ((m1-m2)/(m1+m2))*v1 + (2*m2/(m1+m2))*v2
 	m1pm2 := m1 + m2
@@ -34,7 +31,6 @@ func ElasticCollisionResponse(a *common.Object, b *common.Object) {
 		Z: v1.Z + v1f.Z - v2.Z,
 	}
 
-	fmt.Println(v1f, v2f)
 
 	a.Velocity = v1f
 	b.Velocity = v2f

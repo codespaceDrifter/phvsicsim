@@ -13,6 +13,7 @@ type World struct {
 	CurTime        float32
 	Objects        []*common.Object
 	InitialObjects []*common.Object
+	ToReset        bool
 }
 
 func NewWorld(id string, timeStep float32, sleepTime float32) *World {
@@ -20,6 +21,7 @@ func NewWorld(id string, timeStep float32, sleepTime float32) *World {
 		ID:        id,
 		TimeStep:  timeStep,
 		SleepTime: sleepTime,
+		ToReset:   false,
 	}
 }
 
@@ -42,13 +44,21 @@ func (w *World) Flatten() (float32, []string, [][]float32, [][]float32, [][]uint
 	return w.CurTime, IDArray, PositionArrays, VertexArrays, IndexArrays, ColorArray
 }
 
-func (w *World) Reset() {
-	// Clear existing objects
-	w.Objects = make([]*common.Object, len(w.InitialObjects))
+func (w *World) SetToReset() {
+	w.ToReset = true
+}
 
-	// Deep copy each object from InitialObjects to Objects
-	for i, obj := range w.InitialObjects {
-		w.Objects[i] = obj.DeepCopy()
+func (w *World) Reset() {
+	if w.ToReset {
+		// Clear existing objects
+		w.Objects = make([]*common.Object, len(w.InitialObjects))
+
+		// Deep copy each object from InitialObjects to Objects
+		for i, obj := range w.InitialObjects {
+			w.Objects[i] = obj.DeepCopy()
+		}
+		w.ToReset = false
+
 	}
 }
 
@@ -89,6 +99,9 @@ func (w *World) Overlaps() [][2]*common.Object {
 
 
 func (w *World) Update() {
+
+	w.Reset()
+
 	w.CurTime += w.TimeStep
 
 	overlapObjectPairs := w.Overlaps()
