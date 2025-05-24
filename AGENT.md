@@ -1,5 +1,3 @@
-pseudo functional style of coding in go  
-
 simplicity is the goal  
 
 function types:  
