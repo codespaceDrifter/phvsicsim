@@ -18,6 +18,8 @@ const camera = createCamera();
 const renderer = createRenderer();
 const controls = createControls(camera, renderer);
 
+const worlds = ["rocketLaunch", "threeBody"]
+
 // Setup window resize handler
 setupResizeHandler(camera, renderer);
 

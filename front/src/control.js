@@ -1,5 +1,7 @@
 import { globals } from './global.js';
 
+const speedDiv = document.getElementById('play-speed');
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') {
     globals.speed += 1;

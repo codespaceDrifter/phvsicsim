@@ -15,6 +15,4 @@ multi simulation frontend
 
 
 TO DO:
-understand wtf was written
-make simulating and viewing unrelated. no pause in simulation! save ALL frames in a file. and then just sent EVERYTHING over. and the viewer can view.
 viewer: camera control. lock on objects. get their position, radius, and set to look at them. 
