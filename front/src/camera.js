@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // Initialize scene
-export function createScene() {
+function createScene() {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
   
@@ -26,7 +26,7 @@ export function createScene() {
 }
 
 // Initialize camera
-export function createCamera() {
+function createCamera() {
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1_000_000);
   camera.position.set(100, 100, 100);
   camera.lookAt(0, 0, 0);
@@ -34,7 +34,7 @@ export function createCamera() {
 }
 
 // Initialize renderer
-export function createRenderer() {
+function createRenderer() {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -43,7 +43,7 @@ export function createRenderer() {
 }
 
 // Initialize controls
-export function createControls(camera, renderer) {
+function createControls(camera, renderer) {
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
@@ -72,3 +72,11 @@ export function setupResizeHandler(camera, renderer) {
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 }
+
+// Initialize core components
+export const scene = createScene();
+export const camera = createCamera();
+export const renderer = createRenderer();
+export const controls = createControls(camera, renderer);
+
+setupResizeHandler(camera, renderer);

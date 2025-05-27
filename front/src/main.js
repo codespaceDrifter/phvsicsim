@@ -1,27 +1,18 @@
 import { 
-  createScene, 
-  createCamera, 
-  createRenderer, 
-  createControls, 
-  setupResizeHandler 
+  scene,
+  camera,
+  renderer,
+  controls
 } from './camera.js';
 
-import { loadChunk } from './playback.js';
 import { globals } from './global.js';
 import './control.js';
+import { step } from './playback.js';
 
-
-
-// Initialize core components
-const scene = createScene();
-const camera = createCamera();
-const renderer = createRenderer();
-const controls = createControls(camera, renderer);
 
 const worlds = ["rocketLaunch", "threeBody"]
 
 // Setup window resize handler
-setupResizeHandler(camera, renderer);
 
 function initWorldList() {
   const listDiv = document.getElementById('world-list');
@@ -48,5 +39,6 @@ function animate() {
 // Start animation
 animate();
 
+step();
+
 initWorldList();
-loadChunk(scene);

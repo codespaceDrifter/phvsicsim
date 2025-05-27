@@ -1,70 +1,45 @@
 import { fetchRecording } from './api.js';
 import { updateSimulation } from './update.js';
-import { globals } from './global.js';
+import { globals, cache } from './global.js';
+import { scene } from './camera.js';
 
 const FrameInterval = 1000 / 30;
-let Frames = [];
-let SceneRef = null;
 let Timer = null;
-let ChunkOffset = 0;
-let TotalFrames = 0;
 
-function sortFrames(map) {
-  return Object.keys(map)
-    .map((t) => ({ time: parseFloat(t), data: map[t] }))
-    .sort((a, b) => a.time - b.time);
-}
+export async function step() {
 
-function step() {
-  if (globals.frame >= Frames.length) {
-    globals.chunk += 1;
-    ChunkOffset += Frames.length;
-    loadChunk(SceneRef);
-    return;
-  }
-
-  const frame = Frames[Math.floor(globals.frame)];
-  if (frame) {
-    updateSimulation(frame.data, SceneRef, frame.time);
-  }
-  globals.frame += globals.speed;
-
-  const absolute = ChunkOffset + globals.frame;
-  if (TotalFrames && absolute >= TotalFrames) {
+  if (globals.frame > globals.maxFrame) {
     globals.frame = 0;
     globals.chunk = 0;
-    ChunkOffset = 0;
-    loadChunk(SceneRef);
+    await loadChunk();
     return;
   }
+
+  if (cache.relativeFrame >= cache.frames.length) {
+    globals.chunk += 1;
+    await loadChunk();
+  }
+
+  if (globals.world !== cache.world || globals.chunk !== cache.chunk) {
+    await loadChunk();
+  }
+
+  updateSimulation(cache.frames[cache.relativeFrame]);
+
+  cache.relativeFrame += globals.speed;
+  globals.frame += globals.speed;
+
+
+  console.log(cache.relativeFrame);
+  console.log(cache.frames[cache.relativeFrame]);
 
   Timer = setTimeout(step, FrameInterval);
 }
 
-export function playRecording(scene, recording) {
-  SceneRef = scene;
-  Frames = sortFrames(recording.Frames);
-  if (recording.TotalFrames) {
-    TotalFrames = recording.TotalFrames;
-  }
-  globals.frame = 0;
-  step();
-}
-
-export function loadChunk(scene) {
-  SceneRef = scene;
-  fetchRecording(globals.world, globals.chunk).then((rec) => {
-    if (!rec) {
-      globals.chunk = 0;
-      globals.frame = 0;
-      ChunkOffset = 0;
-      fetchRecording(globals.world, globals.chunk).then((r) => {
-        if (r) {
-          playRecording(scene, r);
-        }
-      });
-      return;
-    }
-    playRecording(scene, rec);
-  });
+async function loadChunk() {
+  const rec = await fetchRecording(globals.world, globals.chunk);
+  cache.world = globals.world;
+  cache.chunk = globals.chunk;
+  cache.relativeFrame = 0;
+  cache.frames = Object.values(rec.Frames);
 }

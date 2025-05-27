@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { scene } from './camera.js';
 
 // Object storage
 export const objects = new Map();
@@ -7,8 +8,9 @@ export const objects = new Map();
 
 
 // Update simulation objects based on data
-export function updateSimulation(data, scene, time) {
+export function updateSimulation(data) {
   const {
+    CurTime,
     IDArray,
     PositionArrays,
     VertexArrays,
@@ -18,8 +20,8 @@ export function updateSimulation(data, scene, time) {
 
   // Update the elapsed time display
   const elapsedTimeDiv = document.getElementById("elapsed-time");
-  if (elapsedTimeDiv && typeof time === "number") {
-    elapsedTimeDiv.textContent = `Time: ${time.toFixed(2)}s`;
+  if (elapsedTimeDiv && typeof CurTime === "number") {
+    elapsedTimeDiv.textContent = `Time: ${(CurTime / 1000).toFixed(2)}s`;
   }
 
   IDArray.forEach((id, index) => {

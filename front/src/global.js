@@ -5,3 +5,12 @@ export const globals = {
     speed: 1,
     maxFrame: 0
 };
+
+export const cache = {
+    frames: [],
+    times: [],
+    world: null,
+    frame: 0,
+    chunk: 0,
+    relativeFrame: 0,
+};
