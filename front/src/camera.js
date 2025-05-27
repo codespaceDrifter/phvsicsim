@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { globals } from './global.js';
 
 // Initialize scene
 function createScene() {
@@ -80,3 +81,41 @@ export const renderer = createRenderer();
 export const controls = createControls(camera, renderer);
 
 setupResizeHandler(camera, renderer);
+
+export function FindClosestID(map) {
+  let closest = null;
+  let minDist = Infinity;
+  for (const [id, obj] of map.entries()) {
+    const dist = obj.position.length();
+    if (dist < minDist) {
+      minDist = dist;
+      closest = id;
+    }
+  }
+  return closest;
+}
+
+function teleportToObject(obj) {
+  if (!obj) {
+    return;
+  }
+  const geom = obj.geometry;
+  if (!geom.boundingSphere) {
+    geom.computeBoundingSphere();
+  }
+  const radius = geom.boundingSphere.radius;
+  const offset = new THREE.Vector3(radius * 3, radius * 3, radius * 3);
+  camera.position.copy(obj.position).add(offset);
+  controls.target.copy(obj.position);
+  controls.update();
+}
+
+export function LockOnID(map, id) {
+  const obj = map.get(id);
+  if (!obj) {
+    return;
+  }
+  globals.LockedID = id;
+  teleportToObject(obj);
+}
+

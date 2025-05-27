@@ -1,5 +1,7 @@
 import { globals } from './global.js';
 import { reset } from './playback.js';
+import { objects } from './update.js';
+import { LockOnID } from "./camera.js";
 
 const speedDiv = document.getElementById('play-speed');
 
@@ -11,6 +13,10 @@ window.addEventListener('keydown', (event) => {
     if (globals.speed < 1) {
       globals.speed = 1;
     }
+  } else if (event.key === 'a') {
+    cycleTarget(-1);
+  } else if (event.key === 'd') {
+    cycleTarget(1);
   } else if (event.key === 'r') {
     reset();
   }
@@ -31,6 +37,19 @@ function initWorldList() {
 }
 
 initWorldList();
+
+function cycleTarget(delta) {
+  const IDs = Array.from(objects.keys());
+  if (IDs.length === 0) {
+    return;
+  }
+  let Index = IDs.indexOf(globals.LockedID);
+  if (Index === -1) {
+    Index = 0;
+  }
+  Index = (Index + delta + IDs.length) % IDs.length;
+  LockOnID(IDs[Index]);
+}
 
 
 document.querySelectorAll('.world-button').forEach(item => {
