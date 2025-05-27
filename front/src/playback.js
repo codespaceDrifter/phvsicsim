@@ -27,14 +27,16 @@ export async function step() {
   globals.frame += globals.speed;
 
 
-  console.log(cache.relativeFrame);
-  console.log(cache.frames[cache.relativeFrame]);
+
 
   Timer = setTimeout(step, FrameInterval);
 }
 
 async function loadChunk() {
   const rec = await fetchRecording(globals.world, globals.chunk);
+  if (!rec || rec.error) {
+    throw new Error(`Failed to load recording: ${rec && rec.error ? rec.error : 'Unknown error'}`);
+  }
   globals.maxFrame = rec.TotalFrames;
   cache.world = globals.world;
   cache.chunk = globals.chunk;
@@ -44,7 +46,6 @@ async function loadChunk() {
 
 export async function reset() {
   const rec = await fetchRecording(globals.world, 0);
-  cache.world = globals.world;
   globals.chunk = 0;
   globals.frame = 0;
   cache.chunk = 0;

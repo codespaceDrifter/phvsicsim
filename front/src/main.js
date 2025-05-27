@@ -10,20 +10,8 @@ import './control.js';
 import { step } from './playback.js';
 
 
-const worlds = ["rocketLaunch", "threeBody"]
 
 // Setup window resize handler
-
-function initWorldList() {
-  const listDiv = document.getElementById('world-list');
-  worlds.forEach((w) => {
-    const item = document.createElement('div');
-    item.textContent = w;
-    item.className = 'world-button';
-    item.style.cursor = 'pointer';
-    listDiv.appendChild(item);
-  });
-}
 
 // Animation loop
 function animate() {
@@ -41,4 +29,3 @@ animate();
 
 step();
 
-initWorldList();

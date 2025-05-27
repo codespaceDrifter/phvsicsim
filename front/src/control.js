@@ -17,12 +17,26 @@ window.addEventListener('keydown', (event) => {
   speedDiv.textContent = `Speed: ${globals.speed}x`;
 });
 
+const worlds = ["rocketLaunch", "threeBody"]
+
+function initWorldList() {
+  const listDiv = document.getElementById('world-list');
+  worlds.forEach((w) => {
+    const item = document.createElement('div');
+    item.textContent = w;
+    item.className = 'world-button';
+    item.style.cursor = 'pointer';
+    listDiv.appendChild(item);
+  });
+}
+
+initWorldList();
+
+
 document.querySelectorAll('.world-button').forEach(item => {
   item.addEventListener('click', (event) => {
     const worldName = event.target.textContent;
     globals.world = worldName;
-    globals.frame = 0;
-    globals.chunk = 0;
-    cache.relativeFrame = 0;
+    reset();
   });
 });
