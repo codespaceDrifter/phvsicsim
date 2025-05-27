@@ -115,7 +115,16 @@ export function LockOnID(map, id) {
   if (!obj) {
     return;
   }
+  if (globals.LockedID && map.has(globals.LockedID)) {
+    const prev = map.get(globals.LockedID);
+    if (prev.userData.wireframe) {
+      prev.userData.wireframe.material.color.set(0xffffff);
+    }
+  }
   globals.LockedID = id;
+  if (obj.userData.wireframe) {
+    obj.userData.wireframe.material.color.set(0xffa500);
+  }
   teleportToObject(obj);
 }
 
