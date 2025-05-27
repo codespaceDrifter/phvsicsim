@@ -1,0 +1,9 @@
+node_modules
+*.exe
+*.test
+*.out
+
+back/cmd/cmd
+logs/
+
+secrets/
