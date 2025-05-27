@@ -1,12 +1,9 @@
 import * as THREE from "three";
-import { scene } from './camera.js';
+import { scene, controls, FindClosestID, LockOnID } from './camera.js';
+import { globals } from './global.js';
 
 // Object storage
 export const objects = new Map();
-
-
-
-
 // Update simulation objects based on data
 export function updateSimulation(data) {
   const {
@@ -45,6 +42,17 @@ export function updateSimulation(data) {
       scene.remove(objects.get(id));
       objects.delete(id);
     }
+  }
+
+  if (!globals.LockedID) {
+    const Closest = FindClosestID();
+    if (Closest) {
+      LockOnID(Closest);
+    }
+  }
+
+  if (globals.LockedID && objects.has(globals.LockedID)) {
+    controls.target.copy(objects.get(globals.LockedID).position);
   }
 }
 

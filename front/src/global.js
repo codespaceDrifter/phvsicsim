@@ -3,7 +3,8 @@ export const globals = {
     frame: 0,
     chunk: 0,
     speed: 1,
-    maxFrame: 0
+    maxFrame: 0,
+    LockedID: null
 };
 
 export const cache = {
