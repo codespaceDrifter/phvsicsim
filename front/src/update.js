@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { scene, controls, FindClosestID, LockOnID } from './camera.js';
 import { globals } from './global.js';
 
+export const IDList = [];
+
 // Object storage
 export const objects = new Map();
 // Update simulation objects based on data
@@ -31,6 +33,9 @@ export function updateSimulation(data) {
 
     if (!objects.has(id)) {
       createObject(id, objData, scene);
+      if (!IDList.includes(id)) {
+        IDList.push(id);
+      }
     } else {
       updateObject(id, objData);
     }
@@ -41,13 +46,17 @@ export function updateSimulation(data) {
     if (!IDArray.includes(id)) {
       scene.remove(objects.get(id));
       objects.delete(id);
+      const idx = IDList.indexOf(id);
+      if (idx !== -1) {
+        IDList.splice(idx, 1);
+      }
     }
   }
 
   if (!globals.LockedID) {
-    const Closest = FindClosestID();
+    const Closest = FindClosestID(objects);
     if (Closest) {
-      LockOnID(Closest);
+      LockOnID(objects, Closest);
     }
   }
 
@@ -90,6 +99,10 @@ export function createObject(id, objData, scene) {
 
   // Add wireframe to mesh
   threeMesh.add(wireframe);
+  threeMesh.userData.wireframe = wireframe;
+  if (globals.LockedID === id) {
+    wireframe.material.color.set(0xffa500);
+  }
 
 
   // Add to scene

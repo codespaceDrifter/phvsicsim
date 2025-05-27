@@ -1,7 +1,7 @@
 import { globals } from './global.js';
 import { reset } from './playback.js';
-import { objects } from './update.js';
-import { LockOnID } from "./camera.js";
+import { objects, IDList } from './update.js';
+import { LockOnID } from './camera.js';
 
 const speedDiv = document.getElementById('play-speed');
 
@@ -39,7 +39,7 @@ function initWorldList() {
 initWorldList();
 
 function cycleTarget(delta) {
-  const IDs = Array.from(objects.keys());
+  const IDs = IDList;
   if (IDs.length === 0) {
     return;
   }
@@ -48,7 +48,7 @@ function cycleTarget(delta) {
     Index = 0;
   }
   Index = (Index + delta + IDs.length) % IDs.length;
-  LockOnID(IDs[Index]);
+  LockOnID(objects, IDs[Index]);
 }
 
 
