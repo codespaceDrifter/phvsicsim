@@ -50,7 +50,7 @@ func (r *Recording) Simulate() {
 		frame := r.World.Flatten()
 		frames[fmt.Sprintf("%.3f", target)] = frame
 
-		if len(frames) == 300 || i == totalFrames-1 {
+		if len(frames) == 1000 || i == totalFrames-1 {
 			fileStruct := RecordingFile{
 				SecondsPerFrame: r.SecondsPerFrame,
 				TotalFrames:     uint32(totalFrames),

@@ -9,10 +9,7 @@ let Timer = null;
 export async function step() {
 
   if (globals.frame > globals.maxFrame) {
-    globals.frame = 0;
-    globals.chunk = 0;
-    await loadChunk();
-    return;
+    reset();
   }
 
   if (cache.relativeFrame >= cache.frames.length) {
@@ -38,8 +35,19 @@ export async function step() {
 
 async function loadChunk() {
   const rec = await fetchRecording(globals.world, globals.chunk);
+  globals.maxFrame = rec.TotalFrames;
   cache.world = globals.world;
   cache.chunk = globals.chunk;
+  cache.relativeFrame = 0;
+  cache.frames = Object.values(rec.Frames);
+}
+
+export async function reset() {
+  const rec = await fetchRecording(globals.world, 0);
+  cache.world = globals.world;
+  globals.chunk = 0;
+  globals.frame = 0;
+  cache.chunk = 0;
   cache.relativeFrame = 0;
   cache.frames = Object.values(rec.Frames);
 }
