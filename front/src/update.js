@@ -1,8 +1,59 @@
 import * as THREE from "three";
-import { scene } from './camera.js';
+import { scene, camera, controls } from './camera.js';
+import { globals } from './global.js';
 
 // Object storage
 export const objects = new Map();
+
+export function FindClosestID() {
+  let Closest = null;
+  let MinDist = Infinity;
+  for (const [CurID, Obj] of objects.entries()) {
+    const Dist = Obj.position.length();
+    if (Dist < MinDist) {
+      MinDist = Dist;
+      Closest = CurID;
+    }
+  }
+  return Closest;
+}
+
+export function TeleportToID(id) {
+  const Obj = objects.get(id);
+  if (!Obj) {
+    return;
+  }
+  const Geometry = Obj.geometry;
+  if (Geometry && !Geometry.boundingSphere) {
+    Geometry.computeBoundingSphere();
+  }
+  const Radius = Geometry && Geometry.boundingSphere
+    ? Geometry.boundingSphere.radius
+    : 10;
+  const Offset = new THREE.Vector3(Radius * 3, Radius * 3, Radius * 3);
+  camera.position.copy(Obj.position).add(Offset);
+  controls.target.copy(Obj.position);
+}
+
+export function LockOnID(id) {
+  if (globals.LockedID && objects.has(globals.LockedID)) {
+    const PrevObj = objects.get(globals.LockedID);
+    if (PrevObj.userData.wireframe) {
+      PrevObj.userData.wireframe.material.color.set(0xffffff);
+    }
+  }
+
+  globals.LockedID = id;
+
+  if (objects.has(id)) {
+    const NewObj = objects.get(id);
+    if (NewObj.userData.wireframe) {
+      NewObj.userData.wireframe.material.color.set(0xffa500);
+    }
+  }
+
+  TeleportToID(id);
+}
 
 
 
@@ -43,8 +94,22 @@ export function updateSimulation(data) {
   for (const id of objects.keys()) {
     if (!IDArray.includes(id)) {
       scene.remove(objects.get(id));
+      if (globals.LockedID === id) {
+        globals.LockedID = null;
+      }
       objects.delete(id);
     }
+  }
+
+  if (!globals.LockedID) {
+    const Closest = FindClosestID();
+    if (Closest) {
+      LockOnID(Closest);
+    }
+  }
+
+  if (globals.LockedID && objects.has(globals.LockedID)) {
+    controls.target.copy(objects.get(globals.LockedID).position);
   }
 }
 
@@ -82,6 +147,10 @@ export function createObject(id, objData, scene) {
 
   // Add wireframe to mesh
   threeMesh.add(wireframe);
+  threeMesh.userData.wireframe = wireframe;
+  if (globals.LockedID === id) {
+    wireframe.material.color.set(0xffa500);
+  }
 
 
   // Add to scene

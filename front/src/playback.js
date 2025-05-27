@@ -1,5 +1,5 @@
 import { fetchRecording } from './api.js';
-import { updateSimulation } from './update.js';
+import { updateSimulation, objects } from './update.js';
 import { globals, cache } from './global.js';
 import { scene } from './camera.js';
 
@@ -48,6 +48,11 @@ export async function reset() {
   const rec = await fetchRecording(globals.world, 0);
   globals.chunk = 0;
   globals.frame = 0;
+  for (const Obj of objects.values()) {
+    scene.remove(Obj);
+  }
+  objects.clear();
+  globals.LockedID = null;
   cache.chunk = 0;
   cache.relativeFrame = 0;
   cache.frames = Object.values(rec.Frames);
