@@ -16,8 +16,8 @@ func main() {
 
 
 	go func() {
-		fmt.Println("Server is running on port 8080")
-		http.ListenAndServe(":8080", router)
+		fmt.Println("Server is running on port 80")
+		http.ListenAndServe(":80", router)
 	}()
 
 	select {}
