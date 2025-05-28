@@ -78,7 +78,7 @@ func ThreeBody() *world.World {
 		common.NewSphere(5, 1),
 		5500,
 		common.Vector3{X: 350, Y: 0, Z: 0},
-		common.Vector3{X: 0, Y: 0, Z: 3},
+		common.Vector3{X: 1, Y: 0, Z: 0},
 	)
 	trisolaris.Restitution = 0.8
 

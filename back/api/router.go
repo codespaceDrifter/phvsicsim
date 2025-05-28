@@ -22,8 +22,15 @@ func NewRouter() http.Handler {
 		AllowCredentials: true,
 	}))
 
+
 	r.Get("/recordings/{name}/{chunk}", func(w http.ResponseWriter, r *http.Request) {
 		GetRecordingHandler(w, r)
+	})
+
+	// Serve frontend (catch-all must come last)
+	fs := http.FileServer(http.Dir("../../front/dist"))
+	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
+		fs.ServeHTTP(w, r)
 	})
 
 	return r
