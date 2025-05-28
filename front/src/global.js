@@ -1,10 +1,11 @@
 export const globals = {
-    world: "rocketLaunch",
+    world: "billardBall",
     frame: 0,
     chunk: 0,
     speed: 1,
     maxFrame: 0,
-    LockedID: null
+    LockedID: null,
+    LockedOnMode: false
 };
 
 export const cache = {
@@ -12,6 +13,7 @@ export const cache = {
     times: [],
     world: null,
     frame: 0,
-    chunk: 0,
     relativeFrame: 0,
 };
+
+export const worlds = ["threeBody", "billardBall"]

@@ -39,6 +39,8 @@ func (r *Recording) Simulate() {
 	exePath, _ := os.Getwd()
 	logDir := fmt.Sprintf("%s/../../logs/%s", exePath, r.Name)
 	os.MkdirAll(logDir, 0755)
+	//clear before starting
+	//os.RemoveAll(logDir)
 
 	for i := 0; i < totalFrames; i++ {
 		fmt.Println("Frame:", i)

@@ -1,7 +1,8 @@
 import { globals } from './global.js';
 import { reset } from './playback.js';
-import { objects, IDList } from './update.js';
-import { LockOnID } from './camera.js';
+// import { objects, IDList } from './update.js';
+// import { LockOnID } from './camera.js';
+import { worlds } from './global.js';
 
 const speedDiv = document.getElementById('play-speed');
 
@@ -13,17 +14,15 @@ window.addEventListener('keydown', (event) => {
     if (globals.speed < 1) {
       globals.speed = 1;
     }
-  } else if (event.key === 'a') {
-    cycleTarget(-1);
-  } else if (event.key === 'd') {
-    cycleTarget(1);
   } else if (event.key === 'r') {
     reset();
+  } else if (event.key === 'Enter') {
+    globals.LockedOnMode = !globals.LockedOnMode;
+    console.log('Lock-on mode:', globals.LockedOnMode ? 'ON' : 'OFF');
   }
   speedDiv.textContent = `Speed: ${globals.speed}x`;
 });
 
-const worlds = ["rocketLaunch", "threeBody"]
 
 function initWorldList() {
   const listDiv = document.getElementById('world-list');
@@ -38,18 +37,18 @@ function initWorldList() {
 
 initWorldList();
 
-function cycleTarget(delta) {
-  const IDs = IDList;
-  if (IDs.length === 0) {
-    return;
-  }
-  let Index = IDs.indexOf(globals.LockedID);
-  if (Index === -1) {
-    Index = 0;
-  }
-  Index = (Index + delta + IDs.length) % IDs.length;
-  LockOnID(objects, IDs[Index]);
-}
+// function cycleTarget(delta) {
+//   const IDs = IDList;
+//   if (IDs.length === 0) {
+//     return;
+//   }
+//   let Index = IDs.indexOf(globals.LockedID);
+//   if (Index === -1) {
+//     Index = 0;
+//   }
+//   Index = (Index + delta + IDs.length) % IDs.length;
+//   LockOnID(objects, IDs[Index]);
+// }
 
 
 document.querySelectorAll('.world-button').forEach(item => {

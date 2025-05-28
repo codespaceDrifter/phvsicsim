@@ -141,3 +141,53 @@ func NewSphere(radius float32, subdivisions int) *Mesh {
 	mesh := NewMesh(vertices, faces)
 	return mesh
 }
+
+// NewHollowRectFrame creates a hollow rectangular frame mesh in the XZ plane
+// width: total outer width (X)
+// height: total outer height (Z)
+// thickness: wall thickness (inward from edge)
+// depth: height of the frame (Y)
+func NewHollowRectFrame(width, height, thickness, depth float32) *Mesh {
+	w2 := width / 2
+	h2 := height / 2
+	t := thickness
+
+	vertices := []Vector3{}
+	indices := [][3]int{}
+
+	// Helper to add a box (side) at a given center position with given size
+	addBox := func(cx, cy, cz, sx, sy, sz float32) {
+		base := len(vertices)
+		// 8 vertices
+		vertices = append(vertices,
+			Vector3{cx - sx/2, cy - sy/2, cz - sz/2}, // 0
+			Vector3{cx + sx/2, cy - sy/2, cz - sz/2}, // 1
+			Vector3{cx + sx/2, cy + sy/2, cz - sz/2}, // 2
+			Vector3{cx - sx/2, cy + sy/2, cz - sz/2}, // 3
+			Vector3{cx - sx/2, cy - sy/2, cz + sz/2}, // 4
+			Vector3{cx + sx/2, cy - sy/2, cz + sz/2}, // 5
+			Vector3{cx + sx/2, cy + sy/2, cz + sz/2}, // 6
+			Vector3{cx - sx/2, cy + sy/2, cz + sz/2}, // 7
+		)
+		// 12 triangles (6 faces)
+		indices = append(indices,
+			[3]int{base + 0, base + 1, base + 2}, [3]int{base + 0, base + 2, base + 3}, // front
+			[3]int{base + 4, base + 6, base + 5}, [3]int{base + 4, base + 7, base + 6}, // back
+			[3]int{base + 0, base + 5, base + 1}, [3]int{base + 0, base + 4, base + 5}, // bottom
+			[3]int{base + 1, base + 5, base + 6}, [3]int{base + 1, base + 6, base + 2}, // right
+			[3]int{base + 0, base + 3, base + 7}, [3]int{base + 0, base + 7, base + 4}, // left
+			[3]int{base + 2, base + 6, base + 7}, [3]int{base + 2, base + 7, base + 3}, // top
+		)
+	}
+
+	// Left side
+	addBox(-w2+t/2, 0, 0, t, depth, height)
+	// Right side
+	addBox(w2-t/2, 0, 0, t, depth, height)
+	// Top side
+	addBox(0, 0, -h2+t/2, width-2*t, depth, t)
+	// Bottom side
+	addBox(0, 0, h2-t/2, width-2*t, depth, t)
+
+	return NewMesh(vertices, indices)
+}

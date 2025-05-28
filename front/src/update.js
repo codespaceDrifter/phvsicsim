@@ -1,11 +1,15 @@
 import * as THREE from "three";
-import { scene, controls, FindClosestID, LockOnID } from './camera.js';
+import { scene } from './camera.js';
 import { globals } from './global.js';
 
 export const IDList = [];
 
 // Object storage
 export const objects = new Map();
+
+let prevLockedObjPos = null;
+let prevLockedID = null;
+
 // Update simulation objects based on data
 export function updateSimulation(data) {
   const {
@@ -53,16 +57,34 @@ export function updateSimulation(data) {
     }
   }
 
-  if (!globals.LockedID) {
-    const Closest = FindClosestID(objects);
-    if (Closest) {
-      LockOnID(objects, Closest);
-    }
-  }
-
-  if (globals.LockedID && objects.has(globals.LockedID)) {
-    controls.target.copy(objects.get(globals.LockedID).position);
-  }
+  //   if (!globals.LockedID) {
+  //     const Closest = FindClosestID(objects);
+  //     if (Closest) {
+  //       LockOnID(objects, Closest);
+  //     }
+  //   }
+  //
+  //   if (globals.LockedID && objects.has(globals.LockedID) && globals.LockedOnMode) {
+  //     const obj = objects.get(globals.LockedID);
+  //     if (prevLockedID !== globals.LockedID) {
+  //       // New lock-on target, reset previous position
+  //       prevLockedObjPos = obj.position.clone();
+  //       prevLockedID = globals.LockedID;
+  //     } else {
+  //       // Move camera by the object's movement delta
+  //       const delta = obj.position.clone().sub(prevLockedObjPos);
+  //       camera.position.add(delta);
+  //       prevLockedObjPos.copy(obj.position);
+  //     }
+  //   } else {
+  //     prevLockedObjPos = null;
+  //     prevLockedID = null;
+  //     // Restore controls when not hard-locked
+  //     controls.enableZoom = true;
+  //     controls.enableRotate = true;
+  //     controls.minDistance = 0;
+  //     controls.maxDistance = Infinity;
+  //   }
 }
 
 // Create a new 3D object
@@ -100,10 +122,9 @@ export function createObject(id, objData, scene) {
   // Add wireframe to mesh
   threeMesh.add(wireframe);
   threeMesh.userData.wireframe = wireframe;
-  if (globals.LockedID === id) {
-    wireframe.material.color.set(0xffa500);
-  }
-
+  //   if (globals.LockedID === id) {
+  //     wireframe.material.color.set(0xffa500);
+  //   }
 
   // Add to scene
   scene.add(threeMesh);

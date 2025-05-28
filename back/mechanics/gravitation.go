@@ -30,8 +30,9 @@ func UniversalGravitationResponse(a *common.Object, b *common.Object) {
 		Z: delta.Z / dist,
 	}
 
-	// Magnitude of force
-	forceMag := float32(G) * a.Mass * b.Mass / distSq
+	// Magnitude of force use 64 bit to avoid overflow
+	f64 := float64(G) * float64(a.Mass) * float64(b.Mass) / float64(distSq)
+	forceMag := float32(f64)
 
 	// Force vector
 	force := common.Vector3{

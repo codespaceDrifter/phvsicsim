@@ -4,14 +4,19 @@ import (
 	"fmt"
 	"net/http"
 	"root/api"
-	"root/example/worlds"
+	exampleWorlds "root/example/worlds"
 	"root/world"
 )
 
 func main() {
-	w := exampleWorlds.RocketLaunch()
+	/*
+	w := exampleWorlds.ThreeBody()
+	recording := world.NewRecording("threeBody", w, 0.5, 3000)
+	recording.Simulate()
+	*/
 
-	recording := world.NewRecording("rocketLaunch", w, 1, 10000)
+	w := exampleWorlds.BillardBall()
+	recording := world.NewRecording("billardBall", w, 0.01, 100)
 	recording.Simulate()
 
 	router := api.NewRouter()

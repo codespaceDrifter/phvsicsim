@@ -16,6 +16,7 @@ type Object struct {
 	Density  float32
 	Mass     float32
 	Friction float32
+	Restitution float32
 
 	CenterOfMass Vector3
 
@@ -32,6 +33,7 @@ func NewObject(id string, color string, mesh *Mesh,density float32, position Vec
 		Density:  density,
 	}
 	result.Mass = result.Mesh.Volume * result.Density
+	result.Restitution = 1.0
 
 	return result
 }
@@ -48,6 +50,7 @@ func (o *Object) DeepCopy() *Object {
 		Density:      o.Density,
 		Mass:         o.Mass,
 		Friction:     o.Friction,
+		Restitution:  o.Restitution,
 		CenterOfMass: o.CenterOfMass,
 		MagicForce:   o.MagicForce,
 	}
@@ -140,7 +143,7 @@ func (a *Object) TriangleOverlap(b *Object) bool {
 func (o *Object) StepBack(dt float32) {
 	negVelocity := NegVec(o.Velocity)
 
-	scaledVelocity := VecMulScalar(negVelocity, 1.1)
+	scaledVelocity := VecMulScalar(negVelocity, 1.3)
 
 	o.Position = VecAddVec(o.Position, VecMulScalar(scaledVelocity, dt))
 }

@@ -95,36 +95,41 @@ export function FindClosestID(map) {
   return closest;
 }
 
-function teleportToObject(obj) {
-  if (!obj) {
-    return;
-  }
-  const geom = obj.geometry;
-  if (!geom.boundingSphere) {
-    geom.computeBoundingSphere();
-  }
-  const radius = geom.boundingSphere.radius;
-  const offset = new THREE.Vector3(radius * 3, radius * 3, radius * 3);
-  camera.position.copy(obj.position).add(offset);
-  controls.target.copy(obj.position);
-  controls.update();
-}
-
-export function LockOnID(map, id) {
-  const obj = map.get(id);
-  if (!obj) {
-    return;
-  }
-  if (globals.LockedID && map.has(globals.LockedID)) {
-    const prev = map.get(globals.LockedID);
-    if (prev.userData.wireframe) {
-      prev.userData.wireframe.material.color.set(0xffffff);
-    }
-  }
-  globals.LockedID = id;
-  if (obj.userData.wireframe) {
-    obj.userData.wireframe.material.color.set(0xffa500);
-  }
-  teleportToObject(obj);
-}
+// export let lockOnRadius = 0;
+// export let lockOnDisplacement = null;
+//
+// function teleportToObject(obj) {
+//   if (!obj) {
+//     return;
+//   }
+//   const geom = obj.geometry;
+//   if (!geom.boundingSphere) {
+//     geom.computeBoundingSphere();
+//   }
+//   const radius = geom.boundingSphere.radius;
+//   const offset = new THREE.Vector3(radius * 3, radius * 3, radius * 3);
+//   camera.position.copy(obj.position).add(offset);
+//   camera.lookAt(obj.position);
+//   controls.target.copy(obj.position);
+//   lockOnRadius = offset.length();
+//   lockOnDisplacement = camera.position.clone().sub(obj.position);
+// }
+//
+// export function LockOnID(map, id) {
+//   const obj = map.get(id);
+//   if (!obj) {
+//     return;
+//   }
+//   if (globals.LockedID && map.has(globals.LockedID)) {
+//     const prev = map.get(globals.LockedID);
+//     if (prev.userData.wireframe) {
+//       prev.userData.wireframe.material.color.set(0xffffff);
+//     }
+//   }
+//   globals.LockedID = id;
+//   if (obj.userData.wireframe) {
+//     obj.userData.wireframe.material.color.set(0xffa500);
+//   }
+//   teleportToObject(obj);
+// }
 

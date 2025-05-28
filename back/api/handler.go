@@ -12,6 +12,10 @@ import (
 func GetRecordingHandler(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
 	chunk := chi.URLParam(r, "chunk")
+
+	fmt.Println("name", name)
+	fmt.Println("chunk", chunk)
+
 	path := fmt.Sprintf("../../logs/%s/%s.bin", name, chunk)
 	file, err := os.Open(path)
 	if err != nil {
