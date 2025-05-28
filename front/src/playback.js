@@ -39,6 +39,7 @@ export async function step() {
 }
 
 async function loadChunk() {
+  if (Timer) clearTimeout(Timer);
   console.log("loading chunk");
   console.log("cached relative frame", cache.relativeFrame);
   console.log("global world", globals.world);
@@ -53,6 +54,7 @@ async function loadChunk() {
 }
 
 export async function reset() {
+  if (Timer) clearTimeout(Timer);
   const rec = await fetchRecording(globals.world, 0);
   globals.chunk = 0;
   globals.frame = 0;

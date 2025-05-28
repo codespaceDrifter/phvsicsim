@@ -16,4 +16,4 @@ export const cache = {
     relativeFrame: 0,
 };
 
-export const worlds = ["threeBody", "billardBall"]
+export const worlds = ["billardBall", "threeBody"]

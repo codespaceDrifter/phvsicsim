@@ -53,7 +53,7 @@ func ThreeBody() *world.World {
 		common.Vector3{X: 0, Y: 0, Z: 0},
 		common.Vector3{X: 0, Y: 0, Z: -5},
 	)
-	acenA.Restitution = 0.5
+	acenA.Restitution = 0.8
 
 	aCenB := common.NewObject(
 		"aCenB", "#ffa64d",
@@ -62,16 +62,16 @@ func ThreeBody() *world.World {
 		common.Vector3{X: 300, Y: 0, Z: 0},
 		common.Vector3{X: -3, Y: 0, Z: 0},
 	)
-	aCenB.Restitution = 0.5
+	aCenB.Restitution = 0.8
 
 	proxima := common.NewObject(
 		"proxima", "#ff4d4d",
 		common.NewSphere(30, 1),
 		6e8,
 		common.Vector3{X: -300, Y: 0, Z: 0},
-		common.Vector3{X: 0, Y: 0, Z: 5},
+		common.Vector3{X: 0, Y: 0, Z: 2},
 	)
-	proxima.Restitution = 0.5
+	proxima.Restitution = 0.8
 
 	trisolaris := common.NewObject(
 		"trisolaris", "#3fa9c0",
@@ -80,7 +80,7 @@ func ThreeBody() *world.World {
 		common.Vector3{X: 350, Y: 0, Z: 0},
 		common.Vector3{X: 0, Y: 0, Z: 3},
 	)
-	trisolaris.Restitution = 0.5
+	trisolaris.Restitution = 0.8
 
 	world.Objects = append(world.Objects, acenA)
 	world.Objects = append(world.Objects, aCenB)
@@ -88,4 +88,10 @@ func ThreeBody() *world.World {
 	world.Objects = append(world.Objects, trisolaris)
 
 	return world
+}
+
+func SimulateThreeBody() {
+	w := ThreeBody()
+	recording := world.NewRecording("threeBody", w, 0.5, 3000)
+	recording.Simulate()
 }
