@@ -22,7 +22,6 @@ func NewRouter() http.Handler {
 		AllowCredentials: true,
 	}))
 
-
 	r.Get("/recordings/{name}/{chunk}", func(w http.ResponseWriter, r *http.Request) {
 		GetRecordingHandler(w, r)
 	})

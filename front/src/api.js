@@ -1,6 +1,6 @@
 export async function fetchRecording(name, chunk) {
   const response = await fetch(
-    `http://localhost:8080/recordings/${name}/${chunk}`,
+    `http://localhost:80/recordings/${name}/${chunk}`,
   );
   if (!response.ok) {
     return null;
