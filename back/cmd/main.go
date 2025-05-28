@@ -5,12 +5,18 @@ import (
 	"log"
 	"net/http"
 	"root/api"
-	// exampleWorlds "root/example/worlds"
+	exampleWorlds "root/example/worlds"
 )
 
+
 func main() {
-	// exampleWorlds.SimulateThreeBody()
-	// exampleWorlds.SimulateBillardBall()
+
+	simulate := true
+
+	if simulate {
+		exampleWorlds.SimulateThreeBody()
+		exampleWorlds.SimulateBillardBall()
+	}
 
 	router := api.NewRouter()
 
