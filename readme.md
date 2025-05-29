@@ -17,3 +17,8 @@ TO DO:
 viewer: camera control. lock on objects. get their position, radius, and set to look at them.
 new: use **A** and **D** keys to cycle locked targets. the camera snaps to the nearest object at start and moves to a good viewing distance.
 
+# MERMAID DIAGRAM
+```mermaid
+graph TD
+    Tensor[Tensor] --> MatMul(MatMul)
+    MatMul --> Backend
