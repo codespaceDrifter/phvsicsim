@@ -37,7 +37,7 @@ func (r *Recording) Simulate() {
 
 	chunkIndex := 0
 	exePath, _ := os.Getwd()
-	logDir := fmt.Sprintf("%s/../../logs/%s", exePath, r.Name)
+	logDir := fmt.Sprintf("%s/logs/%s", exePath, r.Name)
 	os.MkdirAll(logDir, 0755)
 	//clear before starting
 	//os.RemoveAll(logDir)

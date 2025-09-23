@@ -3,6 +3,7 @@ node_modules
 *.test
 *.out
 
+venv/
 back/cmd/cmd
 logs/
 dist/

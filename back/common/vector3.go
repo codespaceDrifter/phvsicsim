@@ -8,6 +8,20 @@ type Vector3 struct {
 	Z float32
 }
 
+func (v Vector3) Flatten () [3]float32 {
+	return [3]float32{v.X, v.Y, v.Z}
+}
+
+func FlattenVecList (vecs []Vector3) []float32 {
+	result := make([]float32, len(vecs)*3)
+	for i, v := range vecs {
+		result[i*3] = v.X
+		result[i*3+1] = v.Y
+		result[i*3+2] = v.Z
+	}
+	return result
+}
+
 func VecAddVec(V1 Vector3, V2 Vector3) Vector3 {
 	return Vector3{X: V1.X + V2.X, Y: V1.Y + V2.Y, Z: V1.Z + V2.Z}
 }

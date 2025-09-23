@@ -18,17 +18,10 @@ func NewMesh(vertices []Vector3, indices [][3]int) *Mesh {
 	return mesh
 }
 
-func (m *Mesh) Flatten() ([]float32, []uint32) {
+func (m *Mesh) Flatten() ([]float32, []uint32, [3]float32, [3]float32, float32) {
 	// Pre-allocate arrays
-	vertices := make([]float32, len(m.Vertices)*3)
+	vertices := FlattenVecList(m.Vertices)
 	indices := make([]uint32, len(m.Indices)*3)
-
-	// Flatten vertices
-	for i, v := range m.Vertices {
-		vertices[i*3] = v.X
-		vertices[i*3+1] = v.Y
-		vertices[i*3+2] = v.Z
-	}
 
 	// Flatten indices
 	for i, tri := range m.Indices {
@@ -37,7 +30,10 @@ func (m *Mesh) Flatten() ([]float32, []uint32) {
 		indices[i*3+2] = uint32(tri[2])
 	}
 
-	return vertices, indices
+	minAABB := m.MinAABB.Flatten()
+	maxAABB := m.MaxAABB.Flatten()
+
+	return vertices, indices, minAABB, maxAABB, m.Volume
 }
 
 func (m *Mesh) ComputeAABB() {

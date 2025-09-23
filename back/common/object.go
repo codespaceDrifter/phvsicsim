@@ -69,7 +69,7 @@ func (o *Object) DeepCopy() *Object {
 }
 
 func (o *Object) Flatten() (string, []float32, []float32, []uint32, string) {
-	v, i := o.Mesh.Flatten()
+	v, i, _, _, _ := o.Mesh.Flatten()
 	return o.ID, []float32{o.Position.X, o.Position.Y, o.Position.Z}, v, i, o.Color
 }
 

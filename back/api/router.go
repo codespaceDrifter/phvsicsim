@@ -27,7 +27,7 @@ func NewRouter() http.Handler {
 	})
 
 	// Serve frontend (catch-all must come last)
-	fs := http.FileServer(http.Dir("../../front/dist"))
+	fs := http.FileServer(http.Dir("front/dist"))
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		fs.ServeHTTP(w, r)
 	})

@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	simulate := true
+	simulate := false
 
 	if simulate {
 		exampleWorlds.SimulateThreeBody()
