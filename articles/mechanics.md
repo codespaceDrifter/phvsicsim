@@ -175,21 +175,22 @@ m_1v_1 -m_2v_1 + 2m_2v_2 &= (m_1+m_2)v_1f \\
 
 > $$ \alpha = \frac{dw}{dt} = \frac{a}{r} \tag{unit = $rad/s^2$}$$
 
-> $$ a_c = \frac{v^2}{r} $$
+
 centripital acceleration is the acceleration needed to keep an object in a circular motion giver it's speed. centripital acceleration points towards the rotation pivot.  centripital force can come from normal force, gravity, friction, tension, etc.  
+
+> $$ a_c = \frac{v^2}{r} $$
+
 proof:  
-$$ \begin{aligned}
-\text{$v_1$, $v_2$, dv, $\Theta$ form a triangle similar to r, r, ds, $\Theta$. assume $v_1$ = $v_2$, express them as v} \\
-\frac{dv}{v} &= \frac{ds}{r} \\
-rdv &= vds \\
-\frac{d(rdv)}{dt} &= \frac{d{vds}}{dt} \\
-ra &= vv \\
-a &= \frac{v^2}{r}
+assume that at point 1 $v_1$. as $\Delta$t approaches 0, the arc length travelled (s) can be approximated as $v_1$ * $\Delta$t.
+now say we traveled for this amount of distance and arrived at point 2 with new velocity $v_2$. then angle $\theta$ between the two points is about s / r. 
+now imagine moving $v_2$ down it's radius line and then back until it touches the point of 1. it will be perpendicular to it's radius line. draw a new line from the endpoint of $v_1$ to $v_2$. this is the acceleration times $\Delta$ t. through some geometry due to known right angles, the angle of the triangle is $\theta$ . and the a * $\Delta$ t = sin ($\theta$) * $v_1$. due to the angle being small, $sin (\theta) \approx \theta = s/r = v_1 * \Delta t / r$  
+so now the equation is $a * \Delta t =v_1 * \Delta t / r * v_1$, cancelling out $\Delta t$ and since the value of v is constant, $a = \frac{v^2}{r}$
 
 
 
 
-\end{aligned}$$
+
+
 
 > $$ I = \int_{body}{}r^2dm \tag{unit = $kgm^2$}$$
 
