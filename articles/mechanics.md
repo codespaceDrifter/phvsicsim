@@ -51,9 +51,9 @@ a(x-x_0) &= v_0at + \frac{1}{2}a^2t^2 \\
 
 > $$ |\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2} $$
 
-proof:
+proof:  
+$\vec{A} \text{ component on the xy plane length: } \sqrt{A_x^2 + A_y^2}$
 $$ \begin{aligned}
-\vec{A} \text{ component on the xy plane length: } &\sqrt{A_x^2 + A_y^2} \\
 |\vec{A}| &= \sqrt{\sqrt{A_x^2 + A_y^2}^2 + A_z^2} \\
 |\vec{A}| &= \sqrt{A_x^2 + A_y^2 + A_z^2}
 \end{aligned} $$
@@ -96,7 +96,9 @@ $$ \begin{aligned}
 E_k &= Fd \\
 E_k &= mad \\
 \because v^2 &= v_0^2 + 2a(x-x_0) \\
-\because \text{energy is work required to get to this energy from zero energy }\\
+\end{aligned} $$
+energy is work required to get to this energy from zero energy 
+$$ \begin{aligned}
 v_0 &= 0\\
 v^2 &= 2ad \\
 ad &= \frac{1}{2}v^2 \\
@@ -109,9 +111,11 @@ proof:
 $$ \begin{aligned}
 E_g &= Fd \\
 E_G &= mad \\
-\text{mg is force required to lift the object}\\
+\end{aligned} $$
+mg is force required to lift the object  
+gravity only cares about the z component
+$$ \begin{aligned}
 a &= g \\
-\text{gravity only cares about the z component}\\
 d &= h \\
 E_G &= mgh
 \end{aligned} $$
@@ -123,7 +127,9 @@ proof:
 $$ \begin{aligned}
 E_s &= Fd \\
 \because F &= -kx \\
-\text{since the force here is pulling the spring, }&\text{it is opposite of spring }\\
+\end{aligned} $$
+since the force here is pulling the spring, }&\text{it is opposite of spring 
+$$ \begin{aligned}
 F&= kx \\
 \int_{x=0}^{x=d} Fdx &= \int_{x=0}^{x=d} kx \\
 Fd &= \frac{1}{2}kx^2 \\
@@ -231,7 +237,9 @@ I &= \int_{body}{}|\vec{r}|^2dm \\
 I &= \int_{body}{}|\vec{r_{cm}}+\vec{d}|^2dm \\
 I &= \int_{body}{}|\vec{r_{cm}}|^2+|\vec{d}|^2+2\vec{r_{cm}}\cdot\vec{d}\,dm \\
 I &= \int_{body}{}|\vec{r_{cm}}|^2dm + |\vec{d}|^2\int_{body}{}dm + 2\vec{d}\cdot\int_{body}{}\vec{r_{cm}}dm \\
-\text{since each dimension of $\int_{body}{}\vec{r_{cm}}dm$ equals 0}\\
+\end{aligned}$$
+since each dimension of $\int_{body}{}\vec{r_{cm}}dm$ equals 0
+$$ \begin{aligned}
 I &= \int_{body}{}|\vec{r_{cm}}|^2dm + d^2m + 0 \\
 I &= I_{cm} + md^2
 \end{aligned}$$
