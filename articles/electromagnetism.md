@@ -11,12 +11,17 @@ a proton is +e charge, a electron is -e charge
 
 > $$|\vec{F}| = k * \frac{Q_1Q_2}{r^2}$$
 
-> $$ k = \frac{1}{4\pi\epsilon_0} $$
+> $$ k = \frac{1}{4\pi\epsilon_0} \approx 9 * 10^9 Nm^2/C^2$$
+
+> $$m_{electron} \approx 9.11×10^{−31} kg$$
 
 > $$m_{proton} \approx m_{neutron} \approx 1.67*10^{-27}kg$$
 
-> 
-some scales for comparison:
+> $$\text{for a photon: } c = \lambda f$$
+
+
+some scales for comparison:  
+amu: $1.66 * 10^{-27}$(carbon 12 weight / 12). considering some proton and neutron converts mass to nucleur binding energy it's less than the proton individual mass. amu times mass number on the periodic table equal mass of that atom. 
 
 nucleus diameter: $10^{-15}m$, atom diameter: $10^{-10}m$  
 
@@ -105,6 +110,7 @@ v &= \frac{nh}{rm2\pi} \\
 
 > $$PE = -\frac{k Ze^2}{r}$$
 
+potential energy is negative of the work done by the electric field required to pull this electron from infinitely far away to the force source. if the force is attractive, the work is same side of the movement, if force is repulsive, it is opposite side of the movement. so if the source is attractive to the target, the potential energy is negative, and if repulsive, potential energy is positive. systems natually evolve towards more negative energy states.   
 proof:
 $$ \begin{aligned}
 \because PE &= -\int_\infty ^r F dr' \\
@@ -133,3 +139,362 @@ E &= -KE
 \end{aligned} $$
 
 > $$1eV = 1.6*10^{-19}J$$
+
+> $$\Delta E = |E_{n1} - E_{n2}| = E_{photon} = hf $$
+photon of the same energy is released is released when an electron drops energy levels
+
+> $$n \lambda_{electron} = 2 \pi r$$
+
+for an electron, it's wave must be a perfect standing wave to not cancel out therefore the radius is quantized
+
+> $$ \lambda = \frac{h}{p}$$
+
+the wavelength of a particle is equal to planks constant divided by the particle's momentum
+
+> $$E_{photon} = p c$$
+measured. derivable from einstein equation
+
+> $$\lambda_{electron} = \frac{h \sqrt{r}}{e \sqrt{kZm}}$$
+proof:
+$$ \begin{aligned}
+\because v^2m &= \frac{kZe^2}{r} \\
+v &= \sqrt{\frac{kZe^2}{mr}} \\
+\because \lambda &= \frac{h}{mv} \\
+\lambda &= \frac{h\sqrt{m}\sqrt{r}}{me\sqrt{kZ}} \\
+\lambda &= \frac{h\sqrt{r}}{e\sqrt{mkZ}} 
+\end{aligned} $$
+
+> $$\text{electric field from a point: } E = \frac{kQ}{r^2}$$
+
+proof:  
+
+$$ \begin{aligned}
+E &= F / Q_{target} \\
+E &= \frac{kQ_{origin}Q_{target}}{r^2} / Q_{target} \\
+E &= \frac{kQ}{r^2}\\
+
+\end{aligned} $$
+
+> $$\text{gauss law: } \oint \vec{E} \cdot d\vec{A} = \frac{Q_{\text{enclosed}}}{\varepsilon_0}$$
+
+total charge fields of any drawn surface given Q of object. note this does not give specific charge at a point on that surface unless the surface charge is even then you can divide by surface   
+gaussian within a conductor within equilibrium is always 0  
+this is for flux. even external charges this is still valid. imagine like a strong charge nearby, field lines go through one side of the gaussian surface and exit the other, the total flux still does not change.  
+proof:  
+
+$$ \begin{aligned}
+\text{point charge } Q \text{ at origin, arbitrary closed surface } S \\
+\text{field at any point: } \vec{E} &= \frac{kQ}{r^2}\hat{r} \\
+\text{flux through tiny patch } d\vec{A} \text{ at distance } r\text{:} \\
+d\Phi &= \vec{E} \cdot d\vec{A} = \frac{kQ}{r^2} \, dA \cos\theta \\
+\text{where } \theta &= \text{angle between } \vec{E} \text{ and } d\vec{A} \\
+\\
+\text{define solid angle: } d\Omega &= \frac{dA \cos\theta}{r^2} \\
+\text{substitute:} \\
+d\Phi &= \frac{kQ}{r^2} \, dA \cos\theta = kQ \cdot \frac{dA \cos\theta}{r^2} = kQ \, d\Omega \\
+\\
+\text{total flux:} \\
+\oint_S \vec{E} \cdot d\vec{A} &= \oint_S d\Phi = \oint kQ \, d\Omega \\
+&= kQ \oint d\Omega \\
+&= kQ \cdot 4\pi \\
+\\
+\therefore \oint \vec{E} \cdot d\vec{A} &= 4\pi kQ_{\text{enclosed}}
+\end{aligned} $$
+
+> $$\text{electric field from a line: } E = \frac{2k\lambda}{r}$$
+
+line must be inifnite length or about infinite length. $\lambda$ means density  
+proof:  
+$$ \begin{aligned}
+\because \text{gauss law} \oint \vec{E} \cdot d\vec{A} &= 4\pi kQ_{enclosed} \\
+E \cdot 2\pi r L &= 4\pi k(\lambda L) \\
+E &= \frac{2k\lambda}{r}
+\end{aligned} $$
+
+> $$\text{electric field from a ring: } E = \frac{kQz}{(z^2 + R^2)^{3/2}}$$
+
+charge must be on the center axis. z is distance from ring on center axis. Q is total charge. R is fixed radius  
+proof:  
+$$ \begin{aligned}
+\text{break ring into segments } dq \text{, each at distance } \sqrt{z^2 + R^2} \\
+dE &= \frac{k \, dq}{z^2 + R^2} \\
+\text{only z-component survives (radial cancels by symmetry)} \\
+dE_z &= dE \cdot \frac{z}{\sqrt{z^2 + R^2}} = \frac{kz \, dq}{(z^2 + R^2)^{3/2}} \\
+E &= \int dE_z = \frac{kz}{(z^2 + R^2)^{3/2}} \int dq \\
+E &= \frac{kQz}{(z^2 + R^2)^{3/2}}
+\end{aligned} $$
+
+
+> $$\text{electric field from a disk: } E = 2\pi k\sigma\left[1 - \frac{z}{\sqrt{z^2 + R^2}}\right]$$
+
+charge must be on the center axis, z is distance from disk on center axis. $\sigma$ is charge density on disk, R is fixed radius.  
+proof:  
+$$ \begin{aligned}
+\text{treat disk as many rings, radius } r' \text{, thickness } dr' \\
+\text{charge on ring: } dq &= \sigma \cdot 2\pi r' dr' \\
+\text{field from this ring (using ring formula):} \\
+dE &= \frac{k(dq)z}{(z^2 + r'^2)^{3/2}} = \frac{k\sigma \cdot 2\pi r' z \, dr'}{(z^2 + r'^2)^{3/2}} \\
+E &= \int_0^R \frac{2\pi k\sigma z \, r' \, dr'}{(z^2 + r'^2)^{3/2}} \\
+\text{substitute } u &= z^2 + r'^2, \, du = 2r' dr' \\
+\text{bounds: when } r'=0, u=z^2 &\text{; when } r'=R, u=z^2+R^2 \\
+E &= 2\pi k\sigma z \int_{z^2}^{z^2+R^2} \frac{du/2}{u^{3/2}} \\
+&= \pi k\sigma z \int_{z^2}^{z^2+R^2} u^{-3/2} \, du \\
+&= \pi k\sigma z \left[-2u^{-1/2}\right]_{z^2}^{z^2+R^2} \\
+&= \pi k\sigma z \left[-\frac{2}{\sqrt{z^2+R^2}} + \frac{2}{z}\right] \\
+&= 2\pi k\sigma z \left[\frac{1}{z} - \frac{1}{\sqrt{z^2+R^2}}\right] \\
+E &= 2\pi k\sigma \left[1 - \frac{z}{\sqrt{z^2 + R^2}}\right]
+\end{aligned} $$
+
+> $$\Delta U = -W$$
+
+U can both defined as the work done by the field from inf to target point or work against the field for 0a from target point to inf. 
+
+due to the electrostatic force being a conservative force. so the force the source field does as the object travels from point A to point B is the same whichever path is taken. assume $\Delta KE$ = 0, and then confer the conservation of energy proof.  
+you can choose where the potential is defined as zero. it can be infinite distance away or it can be the ground.  
+the electricity field is conservative meaning it is path independent. but only the electric field can move the target for it to be conservative.  
+
+
+
+
+Voltage:
+> $$V = \frac{U}{q} \tag{unit = volt}$$
+
+1 volt = 1 J/C
+
+> $$V_{ba} = V_b - V_a = -\frac{W_{ba}}{q} = -\int_a^b\vec{E}\cdot d\vec{\ell}$$
+
+think of it like another dimension that equals 0 at the infinite away. like if it's 2d, it adds a 3d dimension that is like a hill or a valley and it gradually goes to 0 further away it is. 
+
+proof:  
+$$\begin{aligned}
+U_b - U_a &= -\int_a^b\vec{F}\cdot\vec{d\ell} \\
+V_b - V_a &= \frac{U_b - U_a}{q} \\
+\because \vec{E} &= \frac{\vec{F}}{q} \\
+V_b - V_a &= -\int_a^b\frac{\vec{F}}{q}\cdot\vec{d\ell} \\
+V_b - V_a &= -\int_a^b\vec{E}\cdot\vec{d\ell} \\
+\end{aligned}$$
+
+> $$\text{uniform field: } V_{ba} = - Ed$$
+
+> $$\text{single point charge: }V = k\frac{Q}{r}$$
+
+proof:  
+assume a is at an infinite point with $V_a$ = 0 and $r_a = \infty$
+$$\begin{aligned}
+V_b - V_a &= -\int_{r_a}^{r_b}\vec{E}d\vec{\ell} \\
+V_b - V_a &= -\int_{r_a}^{r_b}k\frac{Q}{r^2}d\vec{\ell}\\
+V_b - V_a &= k(\frac{Q}{r_b} - \frac{Q}{r_a})\\
+V_b &= k\frac{Q}{r_b}
+\end{aligned}$$
+
+> $$\text{continuous points: }V = k\int\frac{dQ}{r}$$
+
+dQ is differentiated over all charges and r is the distance from that tiny element of charge
+
+> $$\text{equipotential surfaces are perpendicular to electric field lines}$$
+
+> $$\text{dipole with both charge being Q and angle at long side being $\theta$: }V = kp \frac{\cos(\theta)}{r^2} (p = Ql)$$
+
+proof:  
+$\Delta r =$ length difference between two distances  
+$\ell =$ distance between the two points  
+r is much larger than $\Delta r$ so $r(r+\Delta r) \approx r^2$
+$$\begin{aligned}
+V &= k\frac{Q}{r} + k \frac{-Q}{r+\Delta r} \\
+V &= kQ(\frac{1}{r} - \frac{1}{r + \Delta r}) \\
+V &= kQ\frac{\Delta r}{r(r + \Delta r)} \\
+\because \Delta r &\approx \ell \cos (\theta) \\
+\because r(r+\Delta r) &\approx r^2 \\
+V &= kQ\frac{\ell \cos(\theta)}{r^2} \\
+V &= kp\frac{\cos(\theta)}{r^2}
+\end{aligned}$$
+
+> $$E_{\ell} = -\frac{dV}{d\ell}$$
+
+the component of E in the direction of $\ell$
+
+> $$E = -\frac{dV}{d\ell} (\text{if $\vec{d\ell}$ is parallel to $\vec{E}$})$$
+
+> $$\Delta U = q(V_b - V_a)$$
+
+> $$U = k(\frac{Q_1Q_2}{r_{12}} + \frac{Q_1Q_3}{r_{13}} + \frac{Q_2Q_3}{r_{12}})$$
+
+three point system to bring them all together. think in terms of contribution of each pair.
+
+> $$1 eV = 1.6*10^{-19} J$$
+
+1 eV is the energy gained by an electron that moved through 1 V of voltage difference. 
+$\Delta U = Q V $ so $1.6022*10^{-19}$ C times $1V = 1.6*10^{-19} J$
+
+### capacitors
+
+a capacitor is two conductors seperated by an insulator that can be used as battery, to block surges, and as RAM  
+
+Capacitance: 
+> $$Q = CV \tag{C unit F(farad) = C (Columbs) /V}$$
+
+$V$ (V in itallics) now denotes $\Delta \text{V}$
+
+> $$E = \frac{Q}{\varepsilon_0 A }$$
+
+proof:  
+the electric field between capacitors is uniform (cause we assume the distance is small)  
+for one side of the capacitor, we draw a gaussian pillbox with the two sides of area A. 
+\textbf{Proof:}  
+For one sheet, with gauss law, $2EA = \dfrac{\sigma A}{\varepsilon_0}$ so $E = \dfrac{\sigma}{2\varepsilon_0}$.  
+For two plates $+\sigma$ and $-\sigma$:
+$$\begin{aligned}
+E_{\text{between}} &= \frac{\sigma}{2\varepsilon_0} + \frac{\sigma}{2\varepsilon_0} \\
+E_{\text{between}} &= \frac{\sigma}{\varepsilon_0} \\
+E_{\text{between}} &= \frac{Q}{\varepsilon_0 A}
+\end{aligned}$$
+
+> $$V = \dfrac{Qd}{\varepsilon_0 A}$$
+
+Proof:  
+The potential difference between plates is  
+$$
+V = V_b - V_a = -\int_a^b \vec{E} \cdot d\vec{\ell}.
+$$
+
+The path is taken antiparallel to the electric field lines, so $\theta = 180^\circ$ and $\cos 180^\circ = -1$:
+$$
+V_b - V_a = -\int_a^b E\, d\ell \cos 180^\circ.
+$$
+
+Substitute $\cos 180^\circ = -1$:
+$$
+\begin{aligned}
+V_b - V_a &= -\int_a^b E\, d\ell (-1) \\
+&= +\int_a^b E\, d\ell \\
+&= \frac{Q}{\varepsilon_0 A} \int_a^b d\ell \\
+&= \frac{Qd}{\varepsilon_0 A}.
+\end{aligned}
+$$
+Thus, the potential difference between the plates is $V = \dfrac{Qd}{\varepsilon_0 A}$.
+
+> a conducting sphere in vacume can have self capacity regarding it's voltage and charge. it's voltage is just the peak or valley of it's voltage field not a set point
+
+> parallel capacitors: $C_{eq} = C_1 + C_2 + C_3$  
+
+proof:  
+V is equal everywhere  
+$Q = Q_1 + Q_2 + Q_3$  
+$Q = C_1V + C_2V + C_3V$  
+$Q = C_{eq}V$
+$C_{eq} = C_1 + C_2 + C_3$
+
+> sequential capacitors: $\frac{1}{C_{eq}} = \frac{1}{C_{1}} + \frac{1}{C_{2}} + \frac{1}{C_{3}}$
+
+proof:  
+since Q is static in between the capacitors, Q is the same at the start and end of the capacitor and at each middle capacitor.  
+
+$v = v_1 + v_2 + v_3$  
+$v = \frac{q}{c_1} + \frac{q}{c_2} + \frac{q}{c_3}$  
+$v = q\left(\frac{1}{c_1} + \frac{1}{c_2} + \frac{1}{c_3}\right)$  
+$v = \frac{q}{c_{eq}}$  
+$\frac{1}{c_{eq}} = \frac{1}{c_1} + \frac{1}{c_2} + \frac{1}{c_3}$  
+
+
+energy stored in a capacitor equal the work it took to get those electrons there, which depends on the voltage generated by the electrons already there
+
+> $$U = \frac{Q^2}{2C} =\frac{CV^2}{2} =\frac{QV}{2}$$
+
+proof:  
+$$\begin{aligned}
+W &= \int_0^Q V\, dq \\
+W &= \frac{1}{C}\int_0^Q q dq \\
+W &= \frac{1}{2}\frac{Q^2}{C}\\
+\because Q &= CV \\
+W &= \frac{1}{2}\frac{Q}{V}
+\end{aligned}$$
+
+> $$U = \frac{1}{2} \varepsilon_0 E^2 Ad $$
+
+proof:
+$$\begin{aligned}
+\because C &= \frac{\varepsilon_0A}{d} \\
+\because V &= Ed \\
+U &= \frac{1}{2} CV^2 \\
+U &= \frac{1}{2}\frac{\varepsilon_0A}{d}E^2d^2 \\
+U &= \frac{1}{2}\varepsilon_0AE^2d \\
+\end{aligned}$$
+
+> $$\text{u = energy density = energy / volume = } \frac{1}{2}\varepsilon_0 E^2$$
+
+> $$C =  K C_0$$
+K is the dielectric constant. dielectric is the thing to but put in between the capacitor conductors. $C_0$ is the C at air. 
+\textbf{Proof:}  
+For a parallel-plate capacitor, $C = \dfrac{Q}{V}$.  
+$$\begin{aligned}
+\because V &= E d = \frac{Qd}{\varepsilon_0 A} \\
+C_0 &= \frac{Q}{V} = \frac{\varepsilon_0 A}{d}\\ \because E &= \frac{\sigma}{\varepsilon_0} = \frac{Q}{\varepsilon_0 A} \\
+C &= K C_0 = K\varepsilon_0 \frac{A}{d}
+\end{aligned}$$
+
+> $$\varepsilon = K \varepsilon_0 $$
+
+> $$ C = \varepsilon  \frac{A}{d}$$
+
+### Electric Current and Resistance
+
+sequential batteries add their voltages
+
+> $$I = \frac{dQ}{dt} \tag{unit = A (amphere) = 1C/s}$$
+
+complete circuit: currenct flows and I is same everywhere
+
+open circuit: current does not flow in that sequential loop
+
+conventional current: the direction would be positive charge would flow
+
+> $$V = IR\tag{unit = $\Omega$}$$
+
+resistance: a description of the atomic blocking of electrons impacting it's speed. ohm's law applies to metal conductors that have I that are constantly related to the V. 
+
+for wires
+> $$R = \rho \frac{\ell}{A}$$
+
+$\rho$ constant of ressisivity. $\ell$ wire length A wire cross sectional area
+
+> $$\sigma = \frac{1}{\rho}$$
+
+conductivity
+
+
+> $$P = \frac{dU}{dt} = \frac{dq}{dt}V = IV \tag{unit = 1W = J/s}$$
+
+> $$P = I^2R = \frac{V^2}{R}$$
+
+AC: alternating current
+
+> $V = V_0 \sin \omega t$  
+
+$\omega = 2\pi f$
+
+> $I = I_0 \sin \omega t$  
+
+> $P = I^2 R = I_0^2 R \sin^2 \omega t$
+
+### DC circuits
+
+> electromotor force / emf : $\mathcal{E}$ is the voltage diff at the start of the circuit through a battery or something  
+
+> $$V = \mathcal{E} - Ir$$
+actual voltage = terminal voltage - current flow * internal battery resistance
+
+sequential resistors: 
+
+> $$R = R_1 + R_2 + R_3$$
+V path independent  
+$V = V_1 + V_2 + V_3 = IR_1 + IR_2 + IR_3$  
+$V = I R_{eq}$
+
+Parallel circuits:
+
+>$$I = I_1 + I_2 + I_3$$
+
+> $$\frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}$$
+
+
+

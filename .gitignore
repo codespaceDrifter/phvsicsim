@@ -9,3 +9,6 @@ logs/
 dist/
 
 secrets/
+
+.cursor
+.claude

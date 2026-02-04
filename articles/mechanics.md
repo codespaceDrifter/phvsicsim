@@ -1,11 +1,6 @@
-# Velocity
-> $$ v = \frac{\Delta d}{\Delta t} \tag{unit = m/s}$$
+# 1d kinematics assuming constant acceleration
 
-> $$ a = \frac{\Delta v}{\Delta t} \tag{$unit = m/s^2$} $$
 
-> $$ g = 9.81 m/s $$
-
-### linear constant acceleration:
 > $$ v = v_0 + at $$
 
 proof:  
@@ -13,9 +8,7 @@ $$ \begin{aligned}
 a &= \frac{dv}{dt} \\
 a\,dt &= dv \\
 \int_{v_0}^{v} dv &= \int_{0}^{t} a\,dt \\
-v &= at + C \\
-\because v_0 &= a(0) + C \\
-C &= v_0 \\
+v - v_0 &= at \\
 v &= at + v_0
 \end{aligned} $$
 
@@ -87,7 +80,23 @@ x is the displacement of the object from the spring's rest position. k is the sp
 > $$\text{in isolated system, energy cannot be created or destroyed, only transformed} $$
 
 work is force on an object times the displacement along the direction of the force for that object. θ is the angle between the force and displacement vectors  
-energy is the ability to do work. the ability of an object to do work and the work required to get this object to its energy level is the same. 
+energy is the ability to do work. the ability of an object to do work and the work required to get this object to its energy level is the same.  
+assume the field is conservative and potential energy is defined as the work needed to move the object infinitely far away at zero acceleration
+
+$$ \begin{aligned}
+F &= F_{ext} + F_{field} \\
+m \frac{dv}{dt} dr &= (F_{ext} + F_{field}) dr \\
+m v dv &= (F_{ext} + F_{field}) dr \\
+m v dv &= (F_{ext} + F_{field}) dr \\
+\because \Delta KE &= d(\frac{1}{2}mv^2) = mvdv \\
+\Delta KE &= W + W_{field} \\
+\because W_{field} &= - \Delta PE \\
+W &= \Delta KE + \Delta PE
+
+\end{aligned}$$
+
+
+
 
 > $$E_k = \frac{1}{2}mv^2$$
 
@@ -138,7 +147,9 @@ E_s &= \frac{1}{2}kx^2
 
 
 # Momentum
-> $$ p = mv \tag{unit = $kgm/s^2$} = \frac{dF}{dt} $$
+> $$ p = mv \tag{unit = $kgm/s^2$}  $$
+
+> $$ F = \frac{dp}{dt}$$
 
 > $$ \text{in an isolated enviroment, momentum is conserved} $$
 

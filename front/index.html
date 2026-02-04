@@ -7,83 +7,90 @@
     <style>
         body, body * {
             user-select: none;
-            -webkit-user-select: none; /* For Safari */
-            -ms-user-select: none;     /* For IE/Edge */
-            outline: none;             /* Remove focus outline if any */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            outline: none;
         }
-        body { margin: 0; }
+        body { margin: 0; background: #000; }
         canvas { display: block; }
-        #elapsed-time {
+
+        /* Playback Panel */
+        #playback-panel {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 20px;
             color: white;
             font-family: Arial, sans-serif;
-            font-size: 16px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 4px;
+            font-size: 14px;
+            z-index: 100;
         }
-        #play-speed {
-            position: fixed;
-            top: 40px;
-            left: 10px;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
+        #elapsed-time, #play-speed {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
             border-radius: 4px;
+            margin-bottom: 8px;
         }
         #world-list {
-            position: fixed;
-            top: 80px;
-            left: 10px;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            background: #000; /* solid black */
-            padding: 12px 18px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px 16px;
             border-radius: 8px;
-            outline: 2px solid #444;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border: 1px solid #444;
             min-width: 120px;
+            margin-top: 12px;
         }
         #world-list .world-button {
-            margin: 10px 0;
+            margin: 6px 0;
             padding: 8px 12px;
             border-radius: 4px;
             background: #2c2f36;
-            transition: background 0.2s, color 0.2s;
+            transition: all 0.2s;
             cursor: pointer;
-            display: block;
         }
         #world-list .world-button:hover {
             background: #444851;
             color: #ffd700;
         }
+
+        /* Controls Legend */
+        #controls-legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            max-width: 300px;
+            z-index: 100;
+        }
+        #controls-legend ul {
+            margin: 8px 0 0 18px;
+            padding: 0;
+            list-style: disc;
+        }
     </style>
 </head>
 <body>
-    <div id="elapsed-time">Time: 0.00s</div>
-    <div id="play-speed">Speed: 1x</div>
+    <!-- Playback Panel -->
+    <div id="playback-panel">
+        <div id="elapsed-time">Time: 0.00s</div>
+        <div id="play-speed">Speed: 1x</div>
+        <div id="world-list"></div>
+    </div>
 
-    <div style="position: fixed; bottom: 20px; left: 20px; color: #fff; background: rgba(0,0,0,0.7); padding: 14px 18px; border-radius: 8px; font-size: 15px; max-width: 350px; z-index: 100;">
-        <b>Controls:</b><br>
-        <ul style="margin: 8px 0 0 18px; padding: 0; list-style: disc;">
-            <li><b>Left/Right Arrow</b>: Speed up / slow down playback</li>
-            <li><b>Left Click &amp; Drag</b>: Spin camera</li>
-            <li><b>Right Click &amp; Drag</b>: Pan camera</li>
-            <li><b>Scroll Wheel</b>: Zoom in/out</li>
-            <li><b>R</b>:  Reset</li>
-            <!-- <li><b>A / D</b>: Change locked-on targets</li> -->
-            <!-- <li><b>Enter</b>: Toggle locked-on mode</li> -->
+    <!-- Controls Legend -->
+    <div id="controls-legend">
+        <b>Controls:</b>
+        <ul>
+            <li><b>Left/Right Arrow</b>: Change speed</li>
+            <li><b>Left Click + Drag</b>: Rotate camera</li>
+            <li><b>Right Click + Drag</b>: Pan camera</li>
+            <li><b>Scroll</b>: Zoom</li>
+            <li><b>R</b>: Reset</li>
         </ul>
     </div>
 
-
-
-    <div id="world-list"></div>
     <script type="module" src="/src/main.js"></script>
 </body>
 </html>
